@@ -1,0 +1,223 @@
+openapi: 3.0.3
+info:
+  title: Inditex Prices
+  description: |
+    This is a sample Prices API used by Inditex based on the OpenAPI 3.0 specification.
+  contact:
+    email: jparedes@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/prices
+tags:
+  - name: Filter Prices
+    description: Filtering prices by product and application date
+paths:
+  /filter:
+    post:
+      tags:
+        - Filter
+      summary: Filtering prices by product and application date
+      description: Filtering prices by product and application date
+      operationId: findByProduct
+      requestBody:
+        description: Find Prices by Product and Application Date
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FindByProductRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FindByProductResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '404':
+          description: Resource Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorResponse'
+components:
+  schemas:
+    FindByProductRequest:
+      description: ''
+      required:
+        - productId
+        - brandId
+        - applicationDate
+      properties:
+        productId:
+          type: integer
+          description: Product's id
+          format: int64
+        brandId:
+          type: integer
+          description: Brand's id
+          format: int64
+        applicationDate:
+          type: string
+          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T([0-9]{2}:){2}[0-9]{2}'
+    FindByProductResponse:
+      description: ''
+      allOf:
+        - type: object
+          properties:
+            price:
+              $ref: '#/components/schemas/Price'
+        - $ref: '#/components/schemas/Response'
+      example:
+        responseStatus: success
+        price: {
+          id: 1,
+          productId: 1,
+          brandId: 1,
+          startDate: '2024-12-23T21:42:58.284Z',
+          endDate: '2024-12-23T21:42:58.284Z',
+          price: 12
+        }
+    NotFoundResponse:
+      description: The specified resource was not found
+      allOf:
+        - $ref: '#/components/schemas/ErrorResponse'
+      example:
+        responseStatus: error
+        errors: [
+          {
+            code: 404,
+            message: Resource not found.
+          }
+        ]
+    BadRequestResponse:
+      description: The input is wrong
+      allOf:
+        - $ref: '#/components/schemas/ErrorResponse'
+      example:
+        responseStatus: error
+        errors: [
+          {
+            code: 400,
+            message: Missing productId in the request.
+          }
+        ]
+    InternalServerErrorResponse:
+      description: Internal Server Error
+      allOf:
+        - $ref: '#/components/schemas/ErrorResponse'
+      example:
+        responseStatus: error
+        errors: [
+          {
+            code: 400,
+            message: An unexpected error occurred.
+          }
+        ]
+    Price:
+      description: Returns a price
+      properties:
+        productId:
+          type: integer
+          description: Id of the product.
+          format: int64
+        brandId:
+          type: integer
+          description: Id of the brand.
+          format: int64
+        startDate:
+          type: string
+          description: Starting date of the price application.
+          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T([0-9]{2}:){2}[0-9]{2}'
+        endDate:
+          type: string
+          description: End date of the price application.
+          pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T([0-9]{2}:){2}[0-9]{2}'
+        price:
+          type: number
+          description: Price of the product to apply
+          format: double
+    Error:
+      title: Root Type of Error
+      description: ''
+      required:
+        - code
+        - message
+      type: object
+      properties:
+        code:
+          description: |
+            Error code.
+            Enum whose values are **retrieved from the enum method**
+            
+            ## Datatype
+            Enum
+            
+            ## Rules
+            **Mandatory** if error exists
+          
+          type: string
+        message:
+          description: |
+            Error message
+            
+            ## Rules
+            OptionalError code
+            
+            ## Rules
+            **Mandatory** if error exists
+          type: string
+      example:
+        type: error | warning
+        code: '801'
+        message: Error filtering by product
+    Response:
+      title: Root Type for Response
+      description: Generic Response
+      required:
+        - responseStatus
+      type: object
+      properties:
+        errors:
+          description: |
+            Errors | warnings in the operations
+            
+            ## Rules
+            Optional
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+        responseStatus:
+          description: |
+            Determine the status of the operations
+            * success
+            * error
+            
+            ## Rules
+            **Mandatory**
+          enum:
+            - success
+            - error
+          type: string
+    ErrorResponse:
+      title: Root Type for Error Response
+      description: Generic Error Response
+      required:
+        - responseStatus
+        - errors
+      allOf:
+        - $ref: '#/components/schemas/Response'     
