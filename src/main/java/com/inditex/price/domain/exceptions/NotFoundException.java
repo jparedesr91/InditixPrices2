@@ -1,10 +1,10 @@
 package com.inditex.price.domain.exceptions;
 
-import com.inditex.price.domain.exceptions.model.Error;
+import com.inditex.price.domain.exceptions.model.ApplicationError;
 
 public class NotFoundException extends ApplicationException {
 
-  public NotFoundException(Error e) {
+  public NotFoundException(ApplicationError e) {
     super(e);
   }
 

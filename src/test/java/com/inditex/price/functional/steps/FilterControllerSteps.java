@@ -3,9 +3,9 @@ package com.inditex.price.functional.steps;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.inditex.price.InditexPriceApplication;
-import com.inditex.price.application.rest.dtos.FindByProductRequestDTO;
-import com.inditex.price.application.rest.dtos.FindByProductResponseDTO;
 import com.inditex.price.functional.FilterControllerTextContext;
+import com.inditex.price.infrastructure.driving.rest.FindByProductRequestDTO;
+import com.inditex.price.infrastructure.driving.rest.FindByProductResponseDTO;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -73,7 +73,7 @@ public class FilterControllerSteps {
   }
 
   public ResponseEntity<FindByProductResponseDTO> getPrice(Long productId, Long brandId,
-      String applicationDate) {
+                                                           String applicationDate) {
     FindByProductRequestDTO findByProductRequestDTO = new FindByProductRequestDTO();
     findByProductRequestDTO.setApplicationDate(applicationDate);
     findByProductRequestDTO.setBrandId(brandId);

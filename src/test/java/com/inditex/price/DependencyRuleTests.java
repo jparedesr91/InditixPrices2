@@ -16,10 +16,8 @@ class DependencyRuleTests {
         .dependOnClassesThat()
         .resideOutsideOfPackages(
             "com.inditex.price.domain..",
-            "lombok..",
-            "jakarta.validation..",
-            "org.mapstruct..",
             "java..",
+            "lombok..",
             "org.junit..",
             "org.mockito..",
             "org.springframework.test.."
@@ -27,5 +25,27 @@ class DependencyRuleTests {
         .check(new ClassFileImporter()
             .importPackages("com.inditex.price.."));
   }
+
+    @Test
+    void applicationDoesNotDependOnOutside() {
+        noClasses()
+                .that()
+                .resideInAPackage("com.inditex.price.application..")
+                .should()
+                .dependOnClassesThat()
+                .resideOutsideOfPackages(
+                        "com.inditex.price.domain..",
+                        "com.inditex.price.application..",
+                        "lombok..",
+                        "jakarta.validation..",
+                        "org.mapstruct..",
+                        "java..",
+                        "org.junit..",
+                        "org.mockito..",
+                        "org.springframework.test.."
+                )
+                .check(new ClassFileImporter()
+                        .importPackages("com.inditex.price.."));
+    }
 
 }

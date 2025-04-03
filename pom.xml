@@ -7,13 +7,14 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.4.1</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <relativePath/>
   </parent>
   <groupId>com.inditex.price</groupId>
   <artifactId>inditex-prices</artifactId>
   <version>0.0.1</version>
   <name>InditexPrices2</name>
   <description>InditexPrices2</description>
+
   <properties>
     <java.version>21</java.version>
     <mapstruct.version>1.6.3</mapstruct.version>
@@ -160,8 +161,8 @@
             <configuration>
               <inputSpec>${project.basedir}/src/main/resources/price_api.yaml</inputSpec>
               <generatorName>spring</generatorName>
-              <apiPackage>com.inditex.price.application.rest.api</apiPackage>
-              <modelPackage>com.inditex.price.application.rest.dtos</modelPackage>
+              <apiPackage>com.inditex.price.infrastructure.driving.rest.adapters</apiPackage>
+              <modelPackage>com.inditex.price.infrastructure.driving.rest</modelPackage>
               <generateSupportingFiles>false</generateSupportingFiles>
               <modelNameSuffix>DTO</modelNameSuffix>
               <configOptions>
