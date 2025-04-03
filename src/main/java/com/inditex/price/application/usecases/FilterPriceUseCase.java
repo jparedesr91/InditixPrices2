@@ -11,7 +11,7 @@ import com.inditex.price.application.ports.driving.FindByProductResult;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import static com.inditex.price.application.mapper.ApplicationMapper.MAPPER;
+import static com.inditex.price.application.mappers.ApplicationMapper.MAPPER;
 
 @UseCase
 @RequiredArgsConstructor

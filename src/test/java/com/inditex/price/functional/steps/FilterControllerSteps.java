@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.inditex.price.InditexPriceApplication;
 import com.inditex.price.functional.FilterControllerTextContext;
-import com.inditex.price.infrastructure.driving.rest.FindByProductRequestDTO;
-import com.inditex.price.infrastructure.driving.rest.FindByProductResponseDTO;
+import com.inditex.price.infrastructure.driving.api.FindByProductRequestDTO;
+import com.inditex.price.infrastructure.driving.api.FindByProductResponseDTO;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;

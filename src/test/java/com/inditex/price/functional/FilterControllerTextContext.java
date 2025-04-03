@@ -1,6 +1,6 @@
 package com.inditex.price.functional;
 
-import com.inditex.price.infrastructure.driving.rest.FindByProductResponseDTO;
+import com.inditex.price.infrastructure.driving.api.FindByProductResponseDTO;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
 

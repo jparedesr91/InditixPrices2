@@ -161,8 +161,8 @@
             <configuration>
               <inputSpec>${project.basedir}/src/main/resources/price_api.yaml</inputSpec>
               <generatorName>spring</generatorName>
-              <apiPackage>com.inditex.price.infrastructure.driving.rest.adapters</apiPackage>
-              <modelPackage>com.inditex.price.infrastructure.driving.rest</modelPackage>
+              <apiPackage>com.inditex.price.infrastructure.driving.api.adapters</apiPackage>
+              <modelPackage>com.inditex.price.infrastructure.driving.api</modelPackage>
               <generateSupportingFiles>false</generateSupportingFiles>
               <modelNameSuffix>DTO</modelNameSuffix>
               <configOptions>

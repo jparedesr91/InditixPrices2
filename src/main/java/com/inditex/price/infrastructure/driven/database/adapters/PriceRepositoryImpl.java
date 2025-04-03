@@ -1,10 +1,10 @@
 package com.inditex.price.infrastructure.driven.database.adapters;
 
-import static com.inditex.price.infrastructure.driven.database.mapper.PersistenceMapper.MAPPER;
+import static com.inditex.price.infrastructure.driven.database.mappers.PersistenceMapper.MAPPER;
 import com.inditex.price.application.ports.driven.PriceRepositoryPort;
 import com.inditex.price.domain.model.Price;
 import java.time.LocalDateTime;
-import com.inditex.price.infrastructure.driven.database.repository.PriceRepository;
+import com.inditex.price.infrastructure.driven.database.repositories.PriceRepository;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
