@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDateTime;
 
 import com.inditex.price.infrastructure.driven.database.entities.BrandEntity;
-import com.inditex.price.infrastructure.driven.database.repositories.PriceRepository;
+import com.inditex.price.infrastructure.driven.database.repositories.PriceJpaRepository;
 import com.inditex.price.infrastructure.driven.database.entities.PriceEntity;
 import com.inditex.price.infrastructure.driven.database.entities.ProductEntity;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 class PriceRepositoryTest {
 
     @Autowired
-    private PriceRepository jpaPriceRepository;
+    private PriceJpaRepository jpaPriceRepository;
 
     @Test
     void obtainPrice() {

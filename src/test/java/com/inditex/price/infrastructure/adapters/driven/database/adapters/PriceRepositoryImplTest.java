@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 import com.inditex.price.infrastructure.driven.database.entities.BrandEntity;
 import com.inditex.price.infrastructure.driven.database.entities.PriceEntity;
 import com.inditex.price.infrastructure.driven.database.entities.ProductEntity;
-import com.inditex.price.infrastructure.driven.database.repositories.PriceRepository;
-import com.inditex.price.infrastructure.driven.database.adapters.PriceRepositoryImpl;
+import com.inditex.price.infrastructure.driven.database.repositories.PriceJpaRepository;
+import com.inditex.price.infrastructure.driven.database.adapters.PriceRepositoryAdapter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,10 +26,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class PriceRepositoryImplTest {
 
     @Mock
-    private PriceRepository jpaPriceRepository;
+    private PriceJpaRepository jpaPriceRepository;
 
     @InjectMocks
-    private PriceRepositoryImpl priceRepository;
+    private PriceRepositoryAdapter priceRepository;
 
     @Test
     void Given_Prices_When_GetByProduct_Then_ReturnPrice() {

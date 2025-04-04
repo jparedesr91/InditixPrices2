@@ -4,13 +4,13 @@ import static com.inditex.price.infrastructure.driven.database.mappers.Persisten
 import com.inditex.price.application.ports.driven.PriceRepositoryPort;
 import com.inditex.price.domain.model.Price;
 import java.time.LocalDateTime;
-import com.inditex.price.infrastructure.driven.database.repositories.PriceRepository;
+import com.inditex.price.infrastructure.driven.database.repositories.PriceJpaRepository;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class PriceRepositoryImpl implements PriceRepositoryPort {
+public class PriceRepositoryAdapter implements PriceRepositoryPort {
 
-  private final PriceRepository priceRepository;
+  private final PriceJpaRepository priceRepository;
 
   @Override
   public Price findByProduct(Long productId, Long brandId, LocalDateTime applicationDate) {

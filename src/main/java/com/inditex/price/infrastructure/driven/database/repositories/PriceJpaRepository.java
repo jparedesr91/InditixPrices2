@@ -8,17 +8,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
+public interface PriceJpaRepository extends JpaRepository<PriceEntity, Long> {
 
   @Query(value = """
-      SELECT P.*
-      FROM PRICES P
-      WHERE PRODUCT_ID = ?1
-      AND BRAND_ID = ?2
-      AND ?3 BETWEEN START_DATE AND END_DATE
-      ORDER BY PRIORITY DESC
-      FETCH FIRST ROW ONLY
-      """, nativeQuery = true)
+      SELECT p
+      FROM PriceEntity p
+      WHERE p.product.id = ?1
+      AND p.brand.id = ?2
+      AND ?3 BETWEEN p.startDate AND p.endDate
+      ORDER BY p.priority DESC
+      LIMIT 1
+      """)
   PriceEntity findByProductIdBrandIdAndApplicationDate(Long productId, Long brandId,
       LocalDateTime applicationDate);
 

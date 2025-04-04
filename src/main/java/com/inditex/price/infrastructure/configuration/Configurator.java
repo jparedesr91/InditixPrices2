@@ -3,8 +3,8 @@ package com.inditex.price.infrastructure.configuration;
 import com.inditex.price.application.ports.driven.PriceRepositoryPort;
 import com.inditex.price.application.ports.driving.ForFilteringPricesPort;
 import com.inditex.price.application.usecases.FilterPriceUseCase;
-import com.inditex.price.infrastructure.driven.database.adapters.PriceRepositoryImpl;
-import com.inditex.price.infrastructure.driven.database.repositories.PriceRepository;
+import com.inditex.price.infrastructure.driven.database.adapters.PriceRepositoryAdapter;
+import com.inditex.price.infrastructure.driven.database.repositories.PriceJpaRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,8 +17,8 @@ public class Configurator {
   }
 
   @Bean
-  PriceRepositoryPort forStoringData(PriceRepository priceRepository) {
-    return new PriceRepositoryImpl(priceRepository);
+  PriceRepositoryPort forStoringData(PriceJpaRepository priceRepository) {
+    return new PriceRepositoryAdapter(priceRepository);
   }
 
 }

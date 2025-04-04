@@ -22,9 +22,9 @@ public class FilterPriceUseCase implements ForFilteringPricesPort {
   @Override
   @SneakyThrows
   public FindByProductResult findByProduct(FindByProductQuery findByProductQuery) {
-    Price price = dataRepository.findByProduct(findByProductQuery.productId(),
-        findByProductQuery.brandId(), findByProductQuery.applicationDate());
-    if (Objects.isNull(price)) {
+      Price price = dataRepository.findByProduct(findByProductQuery.productId(),
+              findByProductQuery.brandId(), findByProductQuery.applicationDate());
+      if (Objects.isNull(price)) {
       throw new NotFoundException(ApplicationErrorType.RESOURCE_NOT_FOUND.toError());
     } else {
       return MAPPER.toFindByProductResult(price);
